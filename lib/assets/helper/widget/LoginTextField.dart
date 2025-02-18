@@ -17,6 +17,9 @@ class _LoginTextFieldState extends State<LoginTextField> {
   IconData currentIcon = Icons.help_outline;
   String currentHint = "";
   String currentLabel = "";
+  bool _isPassword = false;
+  bool _obscureText = true;
+
   final Map<String, IconData> iconMap = {
     "email": Icons.check_circle,
     "password": Icons.remove_red_eye_rounded,
@@ -41,12 +44,34 @@ class _LoginTextFieldState extends State<LoginTextField> {
       currentIcon = iconMap[widget.textFieldState]!;
       currentHint = hint[widget.textFieldState]!;
       currentLabel = label[widget.textFieldState]!;
+      if(widget.textFieldState =="password"){
+        _isPassword = !_isPassword;
+      }
+      _obscureText = true;
     });
+  }
+
+  void _toggleInputType() {
+    setState(() {
+      if(widget.textFieldState =="password"){
+        _isPassword = !_isPassword;
+      }
+      _obscureText = true; // Reset the password visibility when switching
+    });
+  }
+
+  void _togglePasswordVisibility() {
+    if (_isPassword) {
+      setState(() {
+        _obscureText = !_obscureText;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: _isPassword ? _obscureText : false,
       decoration: InputDecoration(
         labelStyle: TextStyle(
           color: ColorsHelper.labelColor,
@@ -55,10 +80,13 @@ class _LoginTextFieldState extends State<LoginTextField> {
         ),
         filled: true,
         fillColor: ColorsHelper.inputColor,
-        suffixIcon: Icon(
-          currentIcon,
-          color: Colors.black,
-        ),
+        suffixIcon: _isPassword
+            ? IconButton(
+          icon: Icon(
+            _obscureText ? Icons.visibility_off : Icons.visibility,
+          ),
+          onPressed: _togglePasswordVisibility,
+        ):SizedBox(),
         labelText: currentLabel,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.0),
