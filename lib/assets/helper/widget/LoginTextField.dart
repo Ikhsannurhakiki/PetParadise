@@ -65,49 +65,63 @@ class _LoginTextFieldState extends State<LoginTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      obscureText: _isPassword ? _obscureText : false,
-      decoration: InputDecoration(
-        labelStyle: TextStyle(
-          color: ColorsHelper.labelColor,
-          fontSize: 13,
-          fontWeight: FontWeight.w700,
-        ),
-        filled: true,
-        fillColor: AppColors.babyBlue,
-        suffixIcon: _isPassword
-            ? IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility_off : Icons.visibility,
-          ),
-          onPressed: _togglePasswordVisibility,
-        ):SizedBox(),
-        labelText: currentLabel,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(25.0),
-          borderSide: BorderSide(
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(25.0),
+        boxShadow: [
+          BoxShadow(
             color: Colors.black,
-            width: 2.0,
+            offset: Offset(3, 3),
+            blurRadius: 6,
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(25.0),
-          borderSide: BorderSide(
-            color: Colors.black,
-            width: 2.0,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(25.0),
-          borderSide: BorderSide(
-            color: AppColors.lightCyan,
-            // Change outline color when focused
-            width: 2.0,
-          ),
-        ),
+        ],
       ),
-      keyboardType: TextInputType.emailAddress,
-      textInputAction: TextInputAction.done,
+      child: TextField(
+        obscureText: _isPassword ? _obscureText : false,
+        decoration: InputDecoration(
+          labelStyle: TextStyle(
+            color: ColorsHelper.labelColor,
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+          ),
+          filled: true,
+          fillColor: Colors.white,
+          suffixIcon: _isPassword
+              ? IconButton(
+            icon: Icon(
+              _obscureText ? Icons.visibility_off : Icons.visibility,
+            ),
+            onPressed: _togglePasswordVisibility,
+          ):SizedBox(),
+          labelText: currentLabel,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 2.0,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),
+            borderSide: BorderSide(
+              color: Colors.black,
+              width: 2.0,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(25.0),
+            borderSide: BorderSide(
+              color: AppColors.lightCyan,
+              // Change outline color when focused
+              width: 2.0,
+            ),
+          ),
+        ),
+
+        keyboardType: TextInputType.emailAddress,
+        textInputAction: TextInputAction.done,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pet_paradise/assets/helper/colors.dart';
 import 'package:pet_paradise/assets/helper/widget/LoginTextField.dart';
+import 'package:pet_paradise/assets/helper/widget/customButton.dart';
 import 'package:pet_paradise/ui/large/mainScreen.dart';
 import 'package:pet_paradise/ui/small/registerSmallView.dart';
 
@@ -105,40 +106,10 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                             SizedBox(
                                 height:
                                     MediaQuery.sizeOf(context).height * 0.01),
-                            Container(
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.from(
-                                          alpha: 0x4D,
-                                          red: 00,
-                                          green: 00,
-                                          blue: 00),
-                                      spreadRadius: 2, // Spread radius
-                                      blurRadius: 10, // Blur radius
-                                      offset: Offset(0, 4), // Shadow offset
-                                    ),
-                                  ],
-                                ),
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                MainScreen()),
-                                      );
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      minimumSize: Size(double.infinity, 50),
-                                      backgroundColor:
-                                          ColorsHelper.buttonColor,
-                                    ),
-                                    child: Text("Login",
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 15)))),
+                            CustomButton(text: "Sign In", onPressed: (){Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MainScreen()),
+                            );}),
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     0.015),

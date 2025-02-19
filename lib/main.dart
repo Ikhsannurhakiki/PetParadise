@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         // Use the brown MaterialColor
         primaryColor: AppColors.babyBlue,
         // Primary color
-        scaffoldBackgroundColor: AppColors.paleTurquoise,
+        scaffoldBackgroundColor: Colors.white,
         // Background color
 
         useMaterial3: true,
