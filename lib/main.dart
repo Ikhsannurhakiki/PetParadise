@@ -3,15 +3,21 @@ import 'package:pet_paradise/assets/helper/colors.dart';
 import 'package:provider/provider.dart';
 import 'provider/screen_size_provider.dart';
 import 'package:pet_paradise/responsiveScreen.dart';
-
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(
-      MultiProvider(
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ScreenSizeProvider()),
       ],
-        child: const MyApp(),));
+      child: const MyApp(),
+    ));
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -24,9 +30,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.babyBlue),
-        primarySwatch: AppColors.lightBlueSwatch, // Use the brown MaterialColor
-        primaryColor: AppColors.babyBlue, // Primary color
-        scaffoldBackgroundColor: AppColors.paleTurquoise, // Background color
+        primarySwatch: AppColors.lightBlueSwatch,
+        // Use the brown MaterialColor
+        primaryColor: AppColors.babyBlue,
+        // Primary color
+        scaffoldBackgroundColor: AppColors.paleTurquoise,
+        // Background color
 
         useMaterial3: true,
       ),
@@ -37,10 +46,11 @@ class MyApp extends StatelessWidget {
 
 class ScreenWrapper extends StatelessWidget {
   const ScreenWrapper({super.key});
+
   @override
   Widget build(BuildContext context) {
     final screenProvider =
-    Provider.of<ScreenSizeProvider>(context, listen: false);
+        Provider.of<ScreenSizeProvider>(context, listen: false);
 
     return LayoutBuilder(
       builder: (context, constraints) {

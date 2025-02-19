@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:pet_paradise/assets/helper/colors.dart';
 import 'package:pet_paradise/assets/helper/widget/LoginTextField.dart';
 import 'package:pet_paradise/ui/large/mainScreen.dart';
-import 'package:pet_paradise/ui/small/registerSmallView.dart';
+import 'package:pet_paradise/ui/small/loginSmallView.dart';
 
-class LoginScreenSmall extends StatefulWidget {
-  const LoginScreenSmall({super.key});
+class RegisterScreenSmall extends StatefulWidget {
+  const RegisterScreenSmall({super.key});
 
   @override
-  State<LoginScreenSmall> createState() => _LoginScreenState();
+  State<RegisterScreenSmall> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreenSmall> {
+class _RegisterScreenState extends State<RegisterScreenSmall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreenSmall> {
           decoration: BoxDecoration(),
           child: Container(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Stack(
@@ -58,6 +59,7 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                         padding: EdgeInsets.only(
@@ -70,7 +72,6 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                         height: MediaQuery.sizeOf(context).height * 0.02),
                     Container(
                       width: MediaQuery.sizeOf(context).width,
-                      height: MediaQuery.sizeOf(context).height * 0.5,
                       decoration: BoxDecoration(
                           color: Colors.blueAccent,
                           borderRadius:
@@ -80,31 +81,28 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                             left: MediaQuery.of(context).size.width * 0.1,
                             right: MediaQuery.of(context).size.width * 0.1),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     0.05),
-                            LoginTextField(textFieldState: "text", label: "Enter your email"),
+                            LoginTextField(textFieldState: "text", label: "Enter your username",),
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     0.02),
-                            LoginTextField(textFieldState: "password", label: "Enter Your password",),
-                            TextButton(
-                                onPressed: () {
-                                  // Handle button press
-                                },
-                                child: Text(
-                                  "Forgot Password?",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w500),
-                                )),
+                            LoginTextField(textFieldState: "text", label: "Enter your email",),
+                            SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    0.02),
+                            LoginTextField(textFieldState: "password", label: "Enter your password",),
+                            SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    0.02),
+                            LoginTextField(textFieldState: "password", label: "Confirm your password",),
                             SizedBox(
                                 height:
-                                    MediaQuery.sizeOf(context).height * 0.01),
+                                    MediaQuery.sizeOf(context).height * 0.02),
                             Container(
                                 decoration: BoxDecoration(
                                   boxShadow: [
@@ -134,7 +132,7 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                                       backgroundColor:
                                           ColorsHelper.buttonColor,
                                     ),
-                                    child: Text("Login",
+                                    child: Text("Sign Up",
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w500,
@@ -216,7 +214,7 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                                       ),
                                     ],
                                   )
-                                ])),
+                                ]))
                           ],
                         ),
                       ),
@@ -224,15 +222,16 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Don't have an account?", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
+                        Text("Already have an account?", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
                         TextButton(onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => RegisterScreenSmall()),
+                            MaterialPageRoute(builder: (context) => LoginScreenSmall()),
                           );
-                        }, child: Text("SignUp", style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)))
+                        }, child: Text("Signin", style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)))
                       ],
                     ),
+                    SizedBox(height: 15)
                   ],
                 )
               ],

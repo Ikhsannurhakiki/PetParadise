@@ -28,7 +28,7 @@ class AppColors {
 
 class ColorsHelper {
   static const Color inputColor = Color(0xFFE0FFFF);
-  static const Color bgColor = Color(0xFFE0FFFF);
+  static const Color bgColor = Color(0xFFB0E0E6);
   static const Color buttonColor = Color(0xFF87CEEB);
   static const Color baseColor = Color(0xFFFFFFFF);
   static final Color secondaryColor = AppColors.lightBlueSwatch[300]!;

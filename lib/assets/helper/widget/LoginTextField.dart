@@ -5,8 +5,9 @@ import '../colors.dart';
 
 class LoginTextField extends StatefulWidget {
   final String textFieldState;
+  final String label;
 
-  const LoginTextField({Key? key, required this.textFieldState}) : super(key: key);
+  const LoginTextField({Key? key, required this.textFieldState, required this.label}) : super(key: key);
 
   @override
   _LoginTextFieldState createState() =>
@@ -15,27 +16,21 @@ class LoginTextField extends StatefulWidget {
 
 class _LoginTextFieldState extends State<LoginTextField> {
   IconData currentIcon = Icons.help_outline;
-  String currentHint = "";
-  String currentLabel = "";
+  late String currentHint;
+  late String currentLabel;
   bool _isPassword = false;
   bool _obscureText = true;
 
   final Map<String, IconData> iconMap = {
     "email": Icons.check_circle,
     "password": Icons.remove_red_eye_rounded,
-    "default": Icons.help_outline,
-  };
-
-  final Map<String, String> label = {
-    "email": "Enter your email",
-    "password": "Enter your password",
-    "default": "",
+    "text": Icons.help_outline,
   };
 
   final Map<String, String> hint = {
     "email": "",
     "password": "",
-    "default": "",
+    "text": "",
   };
 
   @override
@@ -43,7 +38,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
     setState(() {
       currentIcon = iconMap[widget.textFieldState]!;
       currentHint = hint[widget.textFieldState]!;
-      currentLabel = label[widget.textFieldState]!;
+      currentLabel = widget.label!;
       if(widget.textFieldState =="password"){
         _isPassword = !_isPassword;
       }
@@ -79,7 +74,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           fontWeight: FontWeight.w700,
         ),
         filled: true,
-        fillColor: ColorsHelper.inputColor,
+        fillColor: AppColors.babyBlue,
         suffixIcon: _isPassword
             ? IconButton(
           icon: Icon(
@@ -110,7 +105,6 @@ class _LoginTextFieldState extends State<LoginTextField> {
             width: 2.0,
           ),
         ),
-        hintText: currentHint,
       ),
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.done,
