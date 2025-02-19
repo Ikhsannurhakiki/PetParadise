@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_paradise/assets/helper/colors.dart';
-import 'package:pet_paradise/assets/helper/widget/LoginTextField.dart';
+import 'package:pet_paradise/assets/helper/widget/CustomTextField.dart';
 
 class HomeSmallScreen extends StatelessWidget {
   const HomeSmallScreen({super.key});
