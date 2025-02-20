@@ -33,7 +33,7 @@ class ColorsHelper {
   static const Color baseColor = Color(0xFFFFFFFF);
   static final Color secondaryColor = AppColors.lightBlueSwatch[300]!;
   static const Color labelColor = Colors.blueGrey;
-
+  static final Color iconColor = AppColors.lightBlueSwatch[500]!;
   // MaterialColor for theming
   static const MaterialColor brown = MaterialColor(
     0xFFAE794B, // Base brown color

@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pet_paradise/assets/helper/colors.dart';
 import 'package:pet_paradise/assets/helper/widget/CustomTextField.dart';
+import 'package:pet_paradise/assets/helper/widget/customTypeList.dart';
+import 'package:pet_paradise/assets/helper/widget/customTypeListItem.dart';
+
+import '../../data/local/dataTypeList.dart';
 
 class HomeSmallScreen extends StatelessWidget {
   const HomeSmallScreen({super.key});
@@ -12,7 +16,7 @@ class HomeSmallScreen extends StatelessWidget {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(70.0),
           child: AppBar(
-            foregroundColor: AppColors.lightBlue,
+            foregroundColor: ColorsHelper.iconColor,
             backgroundColor: Colors.white,
             leading: Center(
               child: Padding(
@@ -29,7 +33,7 @@ class HomeSmallScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 16, top: 8),
                 child: IconButton(
-                  icon: Icon(Icons.more_horiz,size: 35), // More options icon
+                  icon: Icon(Icons.more_horiz, size: 35), // More options icon
                   onPressed: () {
                     // Handle "more options" click here
                   },
@@ -39,10 +43,43 @@ class HomeSmallScreen extends StatelessWidget {
           )),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 16),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              LoginTextField(textFieldState: "text", label: "Search")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 15,
+                    child: CustomTextField(
+                        textFieldState: "text", label: "Search", shadowColor: Colors.grey),
+                  ),
+                  Expanded(flex: 1, child: SizedBox()),
+                  Expanded(
+                      flex: 3,
+                      child: Container(
+                        height: 56.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              offset: Offset(3, 3),
+                              blurRadius: 6,
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.filter_list_sharp,
+                          color: ColorsHelper.iconColor,
+                        ),
+                      ))
+                ],
+              ),
+              CustomTypeList()
             ],
           ),
         ),

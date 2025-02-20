@@ -70,14 +70,12 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                         child: Text("Everything for Your Pet's Happiness",
                             style: TextStyle(
                                 fontSize: 25, fontWeight: FontWeight.w500))),
-                    SizedBox(
-                        height: MediaQuery.sizeOf(context).height * 0.02),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                     Container(
                       width: MediaQuery.sizeOf(context).width,
                       decoration: BoxDecoration(
                           color: Colors.blueAccent,
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(25))),
+                          borderRadius: BorderRadius.all(Radius.circular(25))),
                       child: Padding(
                         padding: EdgeInsets.only(
                             left: MediaQuery.of(context).size.width * 0.1,
@@ -87,28 +85,49 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    0.05),
-                            LoginTextField(textFieldState: "text", label: "Enter your username",),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05),
+                            CustomTextField(
+                                textFieldState: "text",
+                                label: "Enter your username",
+                                shadowColor: Colors.black),
                             SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    0.02),
-                            LoginTextField(textFieldState: "text", label: "Enter your email",),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02),
+                            CustomTextField(
+                                textFieldState: "text",
+                                label: "Enter your email",
+                                shadowColor: Colors.black),
                             SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    0.02),
-                            LoginTextField(textFieldState: "password", label: "Enter your password",),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02),
+                            CustomTextField(
+                                textFieldState: "password",
+                                label: "Enter your password",
+                                shadowColor: Colors.black),
                             SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    0.02),
-                            LoginTextField(textFieldState: "password", label: "Confirm your password",),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02),
+                            CustomTextField(
+                                textFieldState: "password",
+                                label: "Confirm your password",
+                                shadowColor: Colors.black),
                             SizedBox(
                                 height:
                                     MediaQuery.sizeOf(context).height * 0.02),
-                            CustomButton(text: "Sign Up", onPressed: (){}),
+                            CustomButton(
+                                text: "Sign Up",
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              HomeSmallScreen()));
+                                },
+                                shadowColor: Colors.black),
                             SizedBox(
-                                height: MediaQuery.of(context).size.height *
-                                    0.015),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.015),
                             Container(
                                 padding: EdgeInsets.all(
                                     MediaQuery.of(context).size.width * 0.01),
@@ -121,8 +140,7 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                                         fontWeight: FontWeight.w500),
                                   ),
                                   Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
@@ -191,13 +209,20 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Already have an account?", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15)),
-                        TextButton(onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => LoginScreenSmall()),
-                          );
-                        }, child: Text("Signin", style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)))
+                        Text("Already have an account?",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 15)),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginScreenSmall()),
+                              );
+                            },
+                            child: Text("Signin",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 15)))
                       ],
                     ),
                     SizedBox(height: 15)

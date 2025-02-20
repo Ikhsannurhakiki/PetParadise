@@ -87,11 +87,11 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     0.05),
-                            LoginTextField(textFieldState: "text", label: "Enter your email"),
+                            CustomTextField(textFieldState: "text", label: "Enter your email", shadowColor: Colors.black),
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     0.02),
-                            LoginTextField(textFieldState: "password", label: "Enter Your password",),
+                            CustomTextField(textFieldState: "password", label: "Enter Your password", shadowColor: Colors.black),
                             TextButton(
                                 onPressed: () {
                                   // Handle button press
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreenSmall> {
                             CustomButton(text: "Sign In", onPressed: (){Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => MainScreen()),
-                            );}),
+                            );}, shadowColor: Colors.black),
                             SizedBox(
                                 height: MediaQuery.of(context).size.height *
                                     0.015),

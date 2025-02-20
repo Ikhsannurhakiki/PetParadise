@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 
 import '../colors.dart';
 
-class LoginTextField extends StatefulWidget {
+class CustomTextField extends StatefulWidget {
   final String textFieldState;
   final String label;
+  final Color shadowColor;
 
-  const LoginTextField({Key? key, required this.textFieldState, required this.label}) : super(key: key);
+  const CustomTextField({Key? key, required this.textFieldState, required this.label, required this.shadowColor}) : super(key: key);
 
   @override
-  _LoginTextFieldState createState() =>
-      _LoginTextFieldState();
+  _CustomTextFieldState createState() =>
+      _CustomTextFieldState();
 }
 
-class _LoginTextFieldState extends State<LoginTextField> {
+class _CustomTextFieldState extends State<CustomTextField> {
   IconData currentIcon = Icons.help_outline;
   late String currentHint;
   late String currentLabel;
@@ -46,15 +47,6 @@ class _LoginTextFieldState extends State<LoginTextField> {
     });
   }
 
-  void _toggleInputType() {
-    setState(() {
-      if(widget.textFieldState =="password"){
-        _isPassword = !_isPassword;
-      }
-      _obscureText = true; // Reset the password visibility when switching
-    });
-  }
-
   void _togglePasswordVisibility() {
     if (_isPassword) {
       setState(() {
@@ -71,7 +63,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
         borderRadius: BorderRadius.circular(25.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
+            color: widget.shadowColor,
             offset: Offset(3, 3),
             blurRadius: 6,
           ),
@@ -105,7 +97,7 @@ class _LoginTextFieldState extends State<LoginTextField> {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
             borderSide: BorderSide(
-              color: Colors.black,
+              color: Colors.lightBlue,
               width: 2.0,
             ),
           ),

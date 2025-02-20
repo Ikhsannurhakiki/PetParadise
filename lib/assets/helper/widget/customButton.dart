@@ -7,8 +7,9 @@ import '../colors.dart';
 class CustomButton extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
+  final Color shadowColor;
 
-  const CustomButton({Key? key, required this.text, required this.onPressed})
+  const CustomButton({Key? key, required this.text, required this.onPressed, required this.shadowColor})
       : super(key: key);
 
   @override
@@ -35,7 +36,7 @@ class _CustomButton extends State<CustomButton> {
           borderRadius: BorderRadius.circular(25.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black,
+              color: widget.shadowColor,
               offset: Offset(3, 3),
               blurRadius: 6,
             ),

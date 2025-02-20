@@ -64,6 +64,8 @@ flutter:
     - lib/assets/twitter.png
     - lib/assets/cat.png
     - lib/assets/defaultprofile.jpg
+    - lib/assets/cat2.png
+    - lib/assets/dog.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
