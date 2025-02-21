@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/assets/helper/colors.dart';
-import 'package:pet_paradise/assets/helper/widget/CustomTextField.dart';
-import 'package:pet_paradise/assets/helper/widget/customButton.dart';
+import 'package:pet_paradise/utils/colors.dart';
+import 'package:pet_paradise/widget/CustomTextField.dart';
+import 'package:pet_paradise/widget/customButton.dart';
 import 'package:pet_paradise/ui/large/mainScreen.dart';
 import 'package:pet_paradise/ui/small/registerSmallView.dart';
 

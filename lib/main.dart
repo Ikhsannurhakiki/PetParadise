@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/assets/helper/colors.dart';
-import 'package:provider/provider.dart';
-import 'provider/screen_size_provider.dart';
-import 'package:pet_paradise/responsiveScreen.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pet_paradise/data/bloc/screen_bloc.dart';
+import 'package:pet_paradise/responsiveScreen.dart';
+import 'package:pet_paradise/utils/colors.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,9 +12,9 @@ void main() {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((_) {
-    runApp(MultiProvider(
+    runApp(MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ScreenSizeProvider()),
+        BlocProvider(create: (context) => ScreenBloc())
       ],
       child: const MyApp(),
     ));
@@ -49,13 +50,10 @@ class ScreenWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenProvider =
-        Provider.of<ScreenSizeProvider>(context, listen: false);
+
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        screenProvider
-            .updateSize(Size(constraints.maxWidth, constraints.maxHeight));
         return const Responsivescreen();
       },
     );

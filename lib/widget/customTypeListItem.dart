@@ -2,7 +2,8 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/assets/helper/colors.dart';
+
+import '../utils/colors.dart';
 
 class CustomTypeListItem extends StatefulWidget {
   final String image;

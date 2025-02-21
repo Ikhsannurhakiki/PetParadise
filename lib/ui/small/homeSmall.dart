@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/assets/helper/colors.dart';
-import 'package:pet_paradise/assets/helper/widget/CustomTextField.dart';
-import 'package:pet_paradise/assets/helper/widget/customTypeList.dart';
-import 'package:pet_paradise/assets/helper/widget/customTypeListItem.dart';
-
-import '../../data/local/dataTypeList.dart';
+import 'package:pet_paradise/utils/colors.dart';
+import 'package:pet_paradise/widget/CustomTextField.dart';
+import 'package:pet_paradise/widget/customTypeList.dart';
 
 class HomeSmallScreen extends StatelessWidget {
   const HomeSmallScreen({super.key});

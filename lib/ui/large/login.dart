@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/assets/helper/colors.dart';
+import 'package:pet_paradise/utils/colors.dart';
 import 'package:pet_paradise/ui/large/mainScreen.dart';
-
-import '../../assets/helper/colors.dart';
 
 class LoginScreenLarge extends StatefulWidget {
   const LoginScreenLarge({super.key});

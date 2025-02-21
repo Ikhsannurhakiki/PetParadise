@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/ui/small/loginSmallView.dart';
-import 'package:provider/provider.dart';
-import 'package:pet_paradise/provider/screen_size_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pet_paradise/data/bloc/screen_state.dart';
 import 'package:pet_paradise/ui/large/login.dart';
+import 'package:pet_paradise/ui/small/loginSmallView.dart';
 
-import 'provider/screen_size_provider.dart';
-import 'ui/large/login.dart';
-import 'ui/small/loginSmallView.dart';
+import 'data/bloc/screen_bloc.dart';
+import 'data/bloc/screen_event.dart';
 
 class Responsivescreen extends StatelessWidget {
   const Responsivescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenProvider = Provider.of<ScreenSizeProvider>(context);
+    final screenBloc = BlocProvider.of<ScreenBloc>(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final size = MediaQuery.of(context).size;
 
+      screenBloc.add(ScreenSizeChanged(size.width));
+    });
     return Scaffold(
-      body: Center(
-        child: screenProvider.isMobile()
-            ? const LoginScreenSmall()
-            : screenProvider.isTablet()
-                ? const LoginScreenLarge()
-                : const LoginScreenLarge(),
-      ),
-    );
+        body: BlocBuilder<ScreenBloc, ScreenState>(builder: (context, state) {
+      if (state is MobileScreenState) {
+        return const LoginScreenSmall();
+      } else if (state is MobileScreenState) {
+        return LoginScreenLarge();
+      }
+      return Center(child: CircularProgressIndicator());
+    }));
   }
 }

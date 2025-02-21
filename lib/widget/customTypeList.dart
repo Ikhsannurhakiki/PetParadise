@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pet_paradise/assets/helper/colors.dart';
 import '../../../data/local/dataTypeList.dart';
 
+import '../utils/colors.dart';
 import 'customTypeListItem.dart';
 
 class CustomTypeList extends StatefulWidget {
