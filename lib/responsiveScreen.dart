@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pet_paradise/data/bloc/screen_state.dart';
 import 'package:pet_paradise/ui/large/login.dart';
-import 'package:pet_paradise/ui/small/loginSmallView.dart';
+import 'package:pet_paradise/ui/small/signin/loginSmallView.dart';
 
 import 'data/bloc/screen_bloc.dart';
 import 'data/bloc/screen_event.dart';

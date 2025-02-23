@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pet_paradise/data/bloc/screen_bloc.dart';
 import 'package:pet_paradise/responsiveScreen.dart';
+import 'package:pet_paradise/ui/small/signin/bloc/SignInBloc.dart';
+import 'package:pet_paradise/ui/small/signup/bloc/signup_bloc.dart';
 import 'package:pet_paradise/utils/colors.dart';
 
 
@@ -14,7 +16,9 @@ void main() {
   ]).then((_) {
     runApp(MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => ScreenBloc())
+        BlocProvider(create: (context) => ScreenBloc()),
+        BlocProvider(create: (context) => SignInBloc()),
+        BlocProvider(create: (context) => SignUpBloc())
       ],
       child: const MyApp(),
     ));

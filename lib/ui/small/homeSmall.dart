@@ -50,6 +50,7 @@ class HomeSmallScreen extends StatelessWidget {
                   Expanded(
                     flex: 15,
                     child: CustomTextField(
+                      textController: TextEditingController(),
                         textFieldState: "text", label: "Search", shadowColor: Colors.grey),
                   ),
                   Expanded(flex: 1, child: SizedBox()),

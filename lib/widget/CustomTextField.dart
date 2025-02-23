@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 
 class CustomTextField extends StatefulWidget {
+  final TextEditingController textController;
   final String textFieldState;
   final String label;
   final Color shadowColor;
 
-  const CustomTextField({Key? key, required this.textFieldState, required this.label, required this.shadowColor}) : super(key: key);
+  const CustomTextField({Key? key, required this.textController,required this.textFieldState, required this.label, required this.shadowColor}) : super(key: key);
 
   @override
   _CustomTextFieldState createState() =>
@@ -70,6 +71,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ],
       ),
       child: TextField(
+        controller: widget.textController,
         obscureText: _isPassword ? _obscureText : false,
         decoration: InputDecoration(
           labelStyle: TextStyle(

@@ -1,19 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pet_paradise/ui/small/signup/registerSmallView.dart';
+import 'package:pet_paradise/ui/small/signin/bloc/SignInBloc.dart';
+import 'package:pet_paradise/ui/small/signin/bloc/signin_event.dart';
+import 'package:pet_paradise/ui/small/signin/bloc/signin_state.dart';
 import 'package:pet_paradise/utils/colors.dart';
 import 'package:pet_paradise/widget/CustomTextField.dart';
 import 'package:pet_paradise/widget/customButton.dart';
-import 'package:pet_paradise/ui/large/mainScreen.dart';
-import 'package:pet_paradise/ui/small/homeSmall.dart';
-import 'package:pet_paradise/ui/small/loginSmallView.dart';
 
-class RegisterScreenSmall extends StatefulWidget {
-  const RegisterScreenSmall({super.key});
+import '../homeSmall.dart';
+
+class LoginScreenSmall extends StatefulWidget {
+  const LoginScreenSmall({super.key});
 
   @override
-  State<RegisterScreenSmall> createState() => _RegisterScreenState();
+  State<LoginScreenSmall> createState() => _LoginScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreenSmall> {
+class _LoginScreenState extends State<LoginScreenSmall> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +44,6 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
           decoration: BoxDecoration(),
           child: Container(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Stack(
@@ -61,7 +81,6 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                         padding: EdgeInsets.only(
@@ -73,6 +92,7 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                     SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
                     Container(
                       width: MediaQuery.sizeOf(context).width,
+                      height: MediaQuery.sizeOf(context).height * 0.5,
                       decoration: BoxDecoration(
                           color: Colors.blueAccent,
                           borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -81,20 +101,14 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                             left: MediaQuery.of(context).size.width * 0.1,
                             right: MediaQuery.of(context).size.width * 0.1),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.05),
                             CustomTextField(
-                                textFieldState: "text",
-                                label: "Enter your username",
-                                shadowColor: Colors.black),
-                            SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.02),
-                            CustomTextField(
+                                textController: emailController,
                                 textFieldState: "text",
                                 label: "Enter your email",
                                 shadowColor: Colors.black),
@@ -102,29 +116,55 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                                 height:
                                     MediaQuery.of(context).size.height * 0.02),
                             CustomTextField(
+                                textController: passwordController,
                                 textFieldState: "password",
-                                label: "Enter your password",
+                                label: "Enter Your password",
                                 shadowColor: Colors.black),
-                            SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.02),
-                            CustomTextField(
-                                textFieldState: "password",
-                                label: "Confirm your password",
-                                shadowColor: Colors.black),
-                            SizedBox(
-                                height:
-                                    MediaQuery.sizeOf(context).height * 0.02),
-                            CustomButton(
-                                text: "Sign Up",
+                            TextButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              HomeSmallScreen()));
+                                  // Handle button press
                                 },
-                                shadowColor: Colors.black),
+                                child: Text(
+                                  "Forgot Password?",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12.0,
+                                      fontWeight: FontWeight.w500),
+                                )),
+                            SizedBox(
+                                height:
+                                    MediaQuery.sizeOf(context).height * 0.01),
+                            BlocConsumer<SignInBloc, SignInState>(
+                                listener: (context, state) {
+                              if (state is SignInSuccess) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("Sign-in Successful!")));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            HomeSmallScreen()));
+                              } else
+                                if (state is SignInFailure) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(state.message)));
+                              }
+                            }, builder: (context, state) {
+                              if (state is SignInLoading) {
+                                return CircularProgressIndicator();
+                              }
+                              return CustomButton(
+                                  text: "Sign In",
+                                  onPressed: () {
+                                    final email = emailController.text;
+                                    final password = passwordController.text;
+                                    print("Email: $email, Password: $password");
+                                    context.read<SignInBloc>().add(
+                                        SignInButtonPressed(email, password));
+                                  },
+                                  shadowColor: Colors.black);
+                            }),
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.015),
@@ -201,7 +241,7 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                                       ),
                                     ],
                                   )
-                                ]))
+                                ])),
                           ],
                         ),
                       ),
@@ -209,7 +249,7 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Already have an account?",
+                        Text("Don't have an account?",
                             style: TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 15)),
                         TextButton(
@@ -217,15 +257,15 @@ class _RegisterScreenState extends State<RegisterScreenSmall> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LoginScreenSmall()),
+                                    builder: (context) =>
+                                        RegisterScreenSmall()),
                               );
                             },
-                            child: Text("Signin",
+                            child: Text("SignUp",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w500, fontSize: 15)))
                       ],
                     ),
-                    SizedBox(height: 15)
                   ],
                 )
               ],
