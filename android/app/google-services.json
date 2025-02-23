@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965601252516",
+    "project_id": "petparadise-6ba94",
+    "storage_bucket": "petparadise-6ba94.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965601252516:android:dd02d0dffa7a10a2ebc231",
+        "android_client_info": {
+          "package_name": "com.nurhakiki.pet_paradise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzOxHpqx0NTh06q7ASFJ_gVFA8oG4x_Kw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
