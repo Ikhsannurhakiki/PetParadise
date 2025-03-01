@@ -8,7 +8,7 @@ import 'package:pet_paradise/ui/small/signin/bloc/SignInBloc.dart';
 import 'package:pet_paradise/ui/small/signup/bloc/signup_bloc.dart';
 import 'package:pet_paradise/utils/colors.dart';
 
-import 'firebase_options.dart';
+import 'firebase_options_backup.dart';
 
 
 void main() async {
