@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -18,71 +19,66 @@ class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;
-    }
-    switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        return android;
-      case TargetPlatform.iOS:
-        return ios;
-      case TargetPlatform.macOS:
-        return macos;
-      case TargetPlatform.windows:
-        return windows;
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
-      default:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions are not supported for this platform.',
-        );
+    } else if (defaultTargetPlatform == TargetPlatform.android) {
+      return android;
+    } else if (defaultTargetPlatform == TargetPlatform.iOS) {
+      return ios;
+    } else {
+      return android;
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAMY6XlPkCn5F-nzZ7NaiJyRQPLbkGKtiI',
-    appId: '1:965601252516:web:753844025f81a5afebc231',
-    messagingSenderId: '965601252516',
-    projectId: 'petparadise-6ba94',
-    authDomain: 'petparadise-6ba94.firebaseapp.com',
-    storageBucket: 'petparadise-6ba94.firebasestorage.app',
-    measurementId: 'G-F5WJJEFQDV',
-  );
+  static FirebaseOptions get web {
+    return FirebaseOptions(
+      apiKey: dotenv.env['WEB_FIREBASE_API_KEY'] ?? '',
+      appId: dotenv.env['WEB_FIREBASE_APP_ID'] ?? '',
+      messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
+      projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+      authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN'] ?? '',
+      storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
+      measurementId: dotenv.env['WEB_FIREBASE_MEASUREMENT_ID'] ?? '',
+    );
+  }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAzOxHpqx0NTh06q7ASFJ_gVFA8oG4x_Kw',
-    appId: '1:965601252516:android:dd02d0dffa7a10a2ebc231',
-    messagingSenderId: '965601252516',
-    projectId: 'petparadise-6ba94',
-    storageBucket: 'petparadise-6ba94.firebasestorage.app',
-  );
+  static FirebaseOptions get android {
+    return FirebaseOptions(
+      apiKey: dotenv.env['ANDROID_FIREBASE_API_KEY'] ?? '',
+      appId: dotenv.env['ANDROID_FIREBASE_APP_ID'] ?? '',
+      messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
+      projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+      storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
+    );
+  }
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAX4Y4i5NmrZ-rjjXgV_ZFVcpfGX1bXi5E',
-    appId: '1:965601252516:ios:4f6d852244c89fa2ebc231',
-    messagingSenderId: '965601252516',
-    projectId: 'petparadise-6ba94',
-    storageBucket: 'petparadise-6ba94.firebasestorage.app',
-    iosBundleId: 'com.nurhakiki.petParadise',
-  );
+  static FirebaseOptions get ios {
+    return FirebaseOptions(
+        apiKey: dotenv.env['IOS_FIREBASE_API_KEY'] ?? '',
+        appId: dotenv.env['IOS_FIREBASE_APP_ID='] ?? '',
+        messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
+        projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+        storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
+        iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID'] ?? '');
+  }
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAX4Y4i5NmrZ-rjjXgV_ZFVcpfGX1bXi5E',
-    appId: '1:965601252516:ios:4f6d852244c89fa2ebc231',
-    messagingSenderId: '965601252516',
-    projectId: 'petparadise-6ba94',
-    storageBucket: 'petparadise-6ba94.firebasestorage.app',
-    iosBundleId: 'com.nurhakiki.petParadise',
-  );
+  static FirebaseOptions get macos {
+    return FirebaseOptions(
+        apiKey: dotenv.env['MACOS_FIREBASE_API_KEY'] ?? '',
+        appId: dotenv.env['MACOS_FIREBASE_APP_ID='] ?? '',
+        messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
+        projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+        storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
+        iosBundleId: dotenv.env['FIREBASE_IOS_BUNDLE_ID'] ?? '');
+  }
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyAMY6XlPkCn5F-nzZ7NaiJyRQPLbkGKtiI',
-    appId: '1:965601252516:web:f2072b430f1f775bebc231',
-    messagingSenderId: '965601252516',
-    projectId: 'petparadise-6ba94',
-    authDomain: 'petparadise-6ba94.firebaseapp.com',
-    storageBucket: 'petparadise-6ba94.firebasestorage.app',
-    measurementId: 'G-JM1ZC2N9EX',
-  );
+  static FirebaseOptions get windows {
+    return FirebaseOptions(
+      apiKey: dotenv.env['WINDOWS_FIREBASE_API_KEY'] ?? '',
+      appId: dotenv.env['WINDOWS_FIREBASE_APP_ID'] ?? '',
+      messagingSenderId: dotenv.env['FIREBASE_MESSAGING_SENDER_ID'] ?? '',
+      projectId: dotenv.env['FIREBASE_PROJECT_ID'] ?? '',
+      authDomain: dotenv.env['FIREBASE_AUTH_DOMAIN'] ?? '',
+      storageBucket: dotenv.env['FIREBASE_STORAGE_BUCKET'] ?? '',
+      measurementId: dotenv.env['WINDOWS_FIREBASE_MEASUREMENT_ID'] ?? '',
+    );
+  }
 }

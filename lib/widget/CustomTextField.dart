@@ -9,11 +9,16 @@ class CustomTextField extends StatefulWidget {
   final String label;
   final Color shadowColor;
 
-  const CustomTextField({Key? key, required this.textController,required this.textFieldState, required this.label, required this.shadowColor}) : super(key: key);
+  const CustomTextField(
+      {Key? key,
+      required this.textController,
+      required this.textFieldState,
+      required this.label,
+      required this.shadowColor})
+      : super(key: key);
 
   @override
-  _CustomTextFieldState createState() =>
-      _CustomTextFieldState();
+  _CustomTextFieldState createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
@@ -40,8 +45,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     setState(() {
       currentIcon = iconMap[widget.textFieldState]!;
       currentHint = hint[widget.textFieldState]!;
-      currentLabel = widget.label!;
-      if(widget.textFieldState =="password"){
+      currentLabel = widget.label;
+      if (widget.textFieldState == "password") {
         _isPassword = !_isPassword;
       }
       _obscureText = true;
@@ -83,11 +88,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
           fillColor: Colors.white,
           suffixIcon: _isPassword
               ? IconButton(
-            icon: Icon(
-              _obscureText ? Icons.visibility_off : Icons.visibility,
-            ),
-            onPressed: _togglePasswordVisibility,
-          ):SizedBox(),
+                  icon: Icon(
+                    _obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                )
+              : SizedBox(),
           labelText: currentLabel,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
@@ -112,7 +118,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           ),
         ),
-
         keyboardType: TextInputType.emailAddress,
         textInputAction: TextInputAction.done,
       ),

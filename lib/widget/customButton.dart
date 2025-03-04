@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../ui/large/mainScreen.dart';
 import '../utils/colors.dart';
 
 class CustomButton extends StatefulWidget {
